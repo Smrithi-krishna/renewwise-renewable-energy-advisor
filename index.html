@@ -1,48 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>RenewWise | Renewable Energy Advisory</title>
 
     <!-- Leaflet map library -->
     <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    >
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
 
     <!-- ================= NAVBAR ================= -->
 
     <header class="navbar">
+      <div class="logo">RenewWise</div>
 
-        <div class="logo">
-            RenewWise
-        </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#advisor">Advisor</a>
+        <a href="#compare">Compare</a>
+      </nav>
 
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#advisor">Advisor</a>
-            <a href="#compare">Compare</a>
-        </nav>
-
-        <!-- DARK / LIGHT MODE -->
-        <button
-            class="theme-toggle"
-            id="themeToggle"
-            onclick="toggleTheme()"
-            aria-label="Toggle dark and light mode">
-
-            <span id="themeIcon">🌙</span>
-
-        </button>
-
+      <!-- DARK / LIGHT MODE -->
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        onclick="toggleTheme()"
+        aria-label="Toggle dark and light mode"
+      >
+        <span id="themeIcon">🌙</span>
+      </button>
     </header>
 
 
@@ -50,124 +44,95 @@
 
     <section id="home" class="hero">
 
-        <div class="hero-text">
+      <div class="hero-text">
 
-            <span class="eyebrow">
-                RENEWABLE ENERGY ADVISORY SYSTEM
-            </span>
+        <span class="eyebrow">
+          RENEWABLE ENERGY ADVISORY SYSTEM
+        </span>
 
-            <h1>
-                Find the right
-                <span>clean energy</span>
-                for you.
-            </h1>
+        <h1>
+          Find the right
+          <span>clean energy</span>
+          for you.
+        </h1>
 
-            <p>
-                Get a personalized renewable energy recommendation
-                based on your location, electricity usage, property
-                and budget.
-            </p>
+        <p>
+          Get a personalized renewable energy recommendation based on your
+          location, electricity usage, property and budget.
+        </p>
 
-            <button
-                class="primary-btn"
-                onclick="startAdvisor()">
+        <button class="primary-btn" onclick="startAdvisor()">
+          Start Energy Assessment →
+        </button>
 
-                Start Energy Assessment →
+      </div>
 
-            </button>
+
+      <!-- ================= HERO VISUAL ================= -->
+
+      <div class="hero-visual">
+
+        <div class="solar-system">
+
+          <div class="orbit orbit-one">
+            <div class="planet planet-one">⚡</div>
+          </div>
+
+          <div class="orbit orbit-two">
+            <div class="planet planet-two">🌱</div>
+          </div>
+
+          <div class="orbit orbit-three">
+            <div class="planet planet-three">♻️</div>
+          </div>
+
+          <div class="sun-core">☀️</div>
+
+        </div>
+
+
+        <!-- FLOATING CARD 1 -->
+
+        <div class="floating-card card-one">
+
+          <span>🌱</span>
+
+          <div>
+            <strong>Sustainable</strong>
+            <small>Clean energy</small>
+          </div>
 
         </div>
 
 
-        <!-- ================= HERO VISUAL ================= -->
+        <!-- FLOATING CARD 2 -->
 
-        <div class="hero-visual">
+        <div class="floating-card card-two">
 
-            <!-- SOLAR SYSTEM -->
+          <span>⚡</span>
 
-            <div class="solar-system">
-
-                <!-- First orbit -->
-                <div class="orbit orbit-one">
-
-                    <div class="planet planet-one">
-                        ⚡
-                    </div>
-
-                </div>
-
-
-                <!-- Second orbit -->
-                <div class="orbit orbit-two">
-
-                    <div class="planet planet-two">
-                        🌱
-                    </div>
-
-                </div>
-
-
-                <!-- Third orbit -->
-                <div class="orbit orbit-three">
-
-                    <div class="planet planet-three">
-                        ♻️
-                    </div>
-
-                </div>
-
-
-                <!-- SUN -->
-
-                <div class="sun-core">
-                    ☀️
-                </div>
-
-            </div>
-
-
-            <!-- FLOATING CARD 1 -->
-
-            <div class="floating-card card-one">
-
-                <span>🌱</span>
-
-                <div>
-                    <strong>Sustainable</strong>
-                    <small>Clean energy</small>
-                </div>
-
-            </div>
-
-
-            <!-- FLOATING CARD 2 -->
-
-            <div class="floating-card card-two">
-
-                <span>⚡</span>
-
-                <div>
-                    <strong>Smarter Energy</strong>
-                    <small>Made for you</small>
-                </div>
-
-            </div>
-
-
-            <!-- EXTRA BADGE -->
-
-            <div class="energy-badge">
-
-                <span>☀️</span>
-
-                <div>
-                    <strong>Solar Ready</strong>
-                    <small>Renewable future</small>
-                </div>
-
-            </div>
+          <div>
+            <strong>Smarter Energy</strong>
+            <small>Made for you</small>
+          </div>
 
         </div>
+
+
+        <!-- EXTRA BADGE -->
+
+        <div class="energy-badge">
+
+          <span>☀️</span>
+
+          <div>
+            <strong>Solar Ready</strong>
+            <small>Renewable future</small>
+          </div>
+
+        </div>
+
+      </div>
 
     </section>
 
@@ -176,822 +141,1062 @@
 
     <section id="advisor" class="advisor">
 
-        <div class="advisor-heading">
+      <div class="advisor-heading">
 
-            <span class="eyebrow">
-                PERSONALIZED ADVISOR
+        <span class="eyebrow">
+          PERSONALIZED ADVISOR
+        </span>
+
+        <h2>
+          Let's find your best renewable energy option.
+        </h2>
+
+        <p>
+          Complete a few simple steps and we'll generate a personalized
+          recommendation.
+        </p>
+
+      </div>
+
+
+      <!-- ================= PROGRESS ================= -->
+
+      <div class="progress-area">
+
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+
+        <div class="step-text">
+          Step <span id="stepNumber">1</span> of 6
+        </div>
+
+      </div>
+
+
+      <!-- ================= STEP 1 ================= -->
+
+      <div class="step active" id="step1">
+
+        <div class="step-card">
+
+          <span class="step-label">
+            STEP 01
+          </span>
+
+          <h3>
+            📍 Where is your property located?
+          </h3>
+
+          <p class="instruction">
+            Click a district on the Kerala map.
+          </p>
+
+          <div id="keralaMap"></div>
+
+
+          <div
+            id="selectedLocation"
+            class="selected-location hidden"
+          >
+
+            <div class="location-icon">
+              📍
+            </div>
+
+            <div>
+
+              <small>
+                SELECTED LOCATION
+              </small>
+
+              <strong id="selectedDistrict">
+                —
+              </strong>
+
+            </div>
+
+            <span class="check">
+              ✓
             </span>
 
-            <h2>
-                Let's find your best renewable energy option.
-            </h2>
-
-            <p>
-                Complete a few simple steps and we'll generate
-                a personalized recommendation.
-            </p>
-
-        </div>
+          </div>
 
 
-        <!-- PROGRESS -->
-
-        <div class="progress-area">
-
-            <div class="progress-bar">
-                <div id="progressFill"></div>
-            </div>
-
-            <div class="step-text">
-                Step <span id="stepNumber">1</span> of 5
-            </div>
+          <button
+            id="locationContinue"
+            class="continue-btn"
+            disabled
+            onclick="nextStep()"
+          >
+            Continue →
+          </button>
 
         </div>
 
-
-        <!-- ================= STEP 1 ================= -->
-
-        <div class="step active" id="step1">
-
-            <div class="step-card">
-
-                <span class="step-label">
-                    STEP 01
-                </span>
-
-                <h3>
-                    📍 Where is your property located?
-                </h3>
-
-                <p class="instruction">
-                    Click a district on the Kerala map.
-                </p>
-
-                <div id="keralaMap"></div>
+      </div>
 
 
-                <div
-                    id="selectedLocation"
-                    class="selected-location hidden">
+      <!-- ================= STEP 2 ================= -->
 
-                    <div class="location-icon">
-                        📍
-                    </div>
+      <div class="step" id="step2">
 
-                    <div>
+        <div class="step-card">
 
-                        <small>
-                            SELECTED LOCATION
-                        </small>
+          <span class="step-label">
+            STEP 02
+          </span>
 
-                        <strong id="selectedDistrict">
-                            —
-                        </strong>
+          <h3>
+            ⚡ How much electricity do you use?
+          </h3>
 
-                    </div>
-
-                    <span class="check">
-                        ✓
-                    </span>
-
-                </div>
+          <p class="instruction">
+            Give us your approximate monthly electricity usage.
+          </p>
 
 
-                <button
-                    id="locationContinue"
-                    class="continue-btn"
-                    disabled
-                    onclick="nextStep()">
+          <label>
+            Average monthly electricity bill
+          </label>
 
-                    Continue →
+          <div class="input-with-symbol">
 
-                </button>
+            <span>₹</span>
 
-            </div>
+            <input
+              type="number"
+              id="bill"
+              placeholder="Example: 3500"
+              min="0"
+            />
 
-        </div>
-
-
-        <!-- ================= STEP 2 ================= -->
-
-        <div class="step" id="step2">
-
-            <div class="step-card">
-
-                <span class="step-label">
-                    STEP 02
-                </span>
-
-                <h3>
-                    ⚡ How much electricity do you use?
-                </h3>
-
-                <p class="instruction">
-                    Give us your approximate monthly electricity usage.
-                </p>
+          </div>
 
 
-                <label>
-                    Average monthly electricity bill
-                </label>
-
-                <div class="input-with-symbol">
-
-                    <span>₹</span>
-
-                    <input
-                        type="number"
-                        id="bill"
-                        placeholder="Example: 3500"
-                        min="0">
-
-                </div>
+          <div class="or-divider">
+            <span>OR</span>
+          </div>
 
 
-                <div class="or-divider">
-                    <span>OR</span>
-                </div>
+          <label>
+            Average monthly consumption
+          </label>
+
+          <div class="input-with-symbol">
+
+            <input
+              type="number"
+              id="consumption"
+              placeholder="Example: 300"
+              min="0"
+            />
+
+            <span>kWh</span>
+
+          </div>
 
 
-                <label>
-                    Average monthly consumption
-                </label>
-
-                <div class="input-with-symbol">
-
-                    <input
-                        type="number"
-                        id="consumption"
-                        placeholder="Example: 300"
-                        min="0">
-
-                    <span>kWh</span>
-
-                </div>
+          <p class="helper">
+            Don't know your kWh usage? Your electricity bill is enough for our
+            simplified assessment.
+          </p>
 
 
-                <p class="helper">
-                    Don't know your kWh usage?
-                    Your electricity bill is enough for our
-                    simplified assessment.
-                </p>
+          <div class="button-row">
 
+            <button
+              class="back-btn"
+              onclick="previousStep()"
+            >
+              ← Back
+            </button>
 
-                <div class="button-row">
+            <button
+              class="continue-btn"
+              onclick="validateEnergy()"
+            >
+              Continue →
+            </button>
 
-                    <button
-                        class="back-btn"
-                        onclick="previousStep()">
-
-                        ← Back
-
-                    </button>
-
-                    <button
-                        class="continue-btn"
-                        onclick="validateEnergy()">
-
-                        Continue →
-
-                    </button>
-
-                </div>
-
-            </div>
+          </div>
 
         </div>
 
-
-        <!-- ================= STEP 3 ================= -->
-
-        <div class="step" id="step3">
-
-            <div class="step-card">
-
-                <span class="step-label">
-                    STEP 03
-                </span>
-
-                <h3>
-                    🏠 Tell us about your property.
-                </h3>
+      </div>
 
 
-                <label>
-                    Property type
-                </label>
+      <!-- ================= STEP 3 ================= -->
 
-                <select id="property">
+      <div class="step" id="step3">
 
-                    <option value="">
-                        Select property type
-                    </option>
+        <div class="step-card">
 
-                    <option value="house">
-                        Independent House
-                    </option>
+          <span class="step-label">
+            STEP 03
+          </span>
 
-                    <option value="apartment">
-                        Apartment
-                    </option>
-
-                    <option value="commercial">
-                        Commercial Building
-                    </option>
-
-                </select>
+          <h3>
+            🏠 Tell us about your property.
+          </h3>
 
 
-                <label>
-                    Available rooftop / installation space
-                </label>
+          <label>
+            Property type
+          </label>
 
-                <div class="option-grid">
+          <select id="property">
 
-                    <button
-                        type="button"
-                        class="choice"
-                        data-space="small"
-                        onclick="selectSpace(this)">
+            <option value="">
+              Select property type
+            </option>
 
-                        Small
+            <option value="house">
+              Independent House
+            </option>
 
-                    </button>
+            <option value="apartment">
+              Apartment
+            </option>
 
-                    <button
-                        type="button"
-                        class="choice"
-                        data-space="medium"
-                        onclick="selectSpace(this)">
+            <option value="commercial">
+              Commercial Building
+            </option>
 
-                        Medium
-
-                    </button>
-
-                    <button
-                        type="button"
-                        class="choice"
-                        data-space="large"
-                        onclick="selectSpace(this)">
-
-                        Large
-
-                    </button>
-
-                </div>
+          </select>
 
 
-                <label>
-                    Sunlight availability
-                </label>
+          <label>
+            Available rooftop / installation space
+          </label>
 
-                <select id="sunlight">
+          <div class="option-grid">
 
-                    <option value="">
-                        Select sunlight availability
-                    </option>
+            <button
+              type="button"
+              class="choice"
+              data-space="small"
+              onclick="selectSpace(this)"
+            >
+              Small
+            </button>
 
-                    <option value="high">
-                        Mostly sunny
-                    </option>
+            <button
+              type="button"
+              class="choice"
+              data-space="medium"
+              onclick="selectSpace(this)"
+            >
+              Medium
+            </button>
 
-                    <option value="medium">
-                        Partially shaded
-                    </option>
+            <button
+              type="button"
+              class="choice"
+              data-space="large"
+              onclick="selectSpace(this)"
+            >
+              Large
+            </button>
 
-                    <option value="low">
-                        Mostly shaded
-                    </option>
-
-                </select>
+          </div>
 
 
-                <div class="button-row">
+          <label>
+            Sunlight availability
+          </label>
 
-                    <button
-                        class="back-btn"
-                        onclick="previousStep()">
+          <select id="sunlight">
 
-                        ← Back
+            <option value="">
+              Select sunlight availability
+            </option>
 
-                    </button>
+            <option value="high">
+              Mostly sunny
+            </option>
 
-                    <button
-                        class="continue-btn"
-                        onclick="validateProperty()">
+            <option value="medium">
+              Partially shaded
+            </option>
 
-                        Continue →
+            <option value="low">
+              Mostly shaded
+            </option>
 
-                    </button>
+          </select>
 
-                </div>
 
-            </div>
+          <div class="button-row">
+
+            <button
+              class="back-btn"
+              onclick="previousStep()"
+            >
+              ← Back
+            </button>
+
+            <button
+              class="continue-btn"
+              onclick="validateProperty()"
+            >
+              Continue →
+            </button>
+
+          </div>
 
         </div>
 
-
-        <!-- ================= STEP 4 ================= -->
-
-        <div class="step" id="step4">
-
-            <div class="step-card">
-
-                <span class="step-label">
-                    STEP 04
-                </span>
-
-                <h3>
-                    💰 What's your approximate budget?
-                </h3>
+      </div>
 
 
-                <div class="budget-options">
+      <!-- ================= STEP 4 ================= -->
 
-                    <button
-                        class="budget-choice"
-                        onclick="selectBudget(this, 'low')">
+      <div class="step" id="step4">
 
-                        <strong>
-                            Below ₹50,000
-                        </strong>
+        <div class="step-card">
 
-                        <span>
-                            Starter budget
-                        </span>
+          <span class="step-label">
+            STEP 04
+          </span>
 
-                    </button>
+          <h3>
+            💰 What's your approximate budget?
+          </h3>
 
 
-                    <button
-                        class="budget-choice"
-                        onclick="selectBudget(this, 'medium')">
+          <div class="budget-options">
 
-                        <strong>
-                            ₹50,000 – ₹1 lakh
-                        </strong>
+            <button
+              class="budget-choice"
+              onclick="selectBudget(this, 'low')"
+            >
 
-                        <span>
-                            Moderate
-                        </span>
+              <strong>
+                Below ₹50,000
+              </strong>
 
-                    </button>
+              <span>
+                Starter budget
+              </span>
 
-
-                    <button
-                        class="budget-choice"
-                        onclick="selectBudget(this, 'high')">
-
-                        <strong>
-                            ₹1 – ₹3 lakh
-                        </strong>
-
-                        <span>
-                            High
-                        </span>
-
-                    </button>
+            </button>
 
 
-                    <button
-                        class="budget-choice"
-                        onclick="selectBudget(this, 'premium')">
+            <button
+              class="budget-choice"
+              onclick="selectBudget(this, 'medium')"
+            >
 
-                        <strong>
-                            Above ₹3 lakh
-                        </strong>
+              <strong>
+                ₹50,000 – ₹1 lakh
+              </strong>
 
-                        <span>
-                            Premium
-                        </span>
+              <span>
+                Moderate
+              </span>
 
-                    </button>
-
-                </div>
+            </button>
 
 
-                <div class="button-row">
+            <button
+              class="budget-choice"
+              onclick="selectBudget(this, 'high')"
+            >
 
-                    <button
-                        class="back-btn"
-                        onclick="previousStep()">
+              <strong>
+                ₹1 – ₹3 lakh
+              </strong>
 
-                        ← Back
+              <span>
+                High
+              </span>
 
-                    </button>
+            </button>
 
-                    <button
-                        class="continue-btn"
-                        onclick="validateBudget()">
 
-                        Continue →
+            <button
+              class="budget-choice"
+              onclick="selectBudget(this, 'premium')"
+            >
 
-                    </button>
+              <strong>
+                Above ₹3 lakh
+              </strong>
 
-                </div>
+              <span>
+                Premium
+              </span>
 
-            </div>
+            </button>
+
+          </div>
+
+
+          <div class="button-row">
+
+            <button
+              class="back-btn"
+              onclick="previousStep()"
+            >
+              ← Back
+            </button>
+
+            <button
+              class="continue-btn"
+              onclick="validateBudget()"
+            >
+              Continue →
+            </button>
+
+          </div>
 
         </div>
 
-
-        <!-- ================= STEP 5 ================= -->
-
-        <div class="step" id="step5">
-
-            <div class="step-card">
-
-                <span class="step-label">
-                    STEP 05
-                </span>
-
-                <h3>
-                    🎯 What's your main goal?
-                </h3>
+      </div>
 
 
-                <div class="goal-options">
+      <!-- ================= STEP 5 ================= -->
 
-                    <button
-                        class="goal-choice"
-                        onclick="selectGoal(this, 'saving')">
+      <div class="step" id="step5">
 
-                        <span>💸</span>
+        <div class="step-card">
 
-                        <strong>
-                            Reduce electricity bills
-                        </strong>
+          <span class="step-label">
+            STEP 05
+          </span>
 
-                    </button>
-
-
-                    <button
-                        class="goal-choice"
-                        onclick="selectGoal(this, 'environment')">
-
-                        <span>🌱</span>
-
-                        <strong>
-                            Reduce carbon footprint
-                        </strong>
-
-                    </button>
+          <h3>
+            🎯 What's your main goal?
+          </h3>
 
 
-                    <button
-                        class="goal-choice"
-                        onclick="selectGoal(this, 'independence')">
+          <div class="goal-options">
 
-                        <span>🔋</span>
+            <button
+              class="goal-choice"
+              onclick="selectGoal(this, 'saving')"
+            >
 
-                        <strong>
-                            Energy independence
-                        </strong>
+              <span>💸</span>
 
-                    </button>
+              <strong>
+                Reduce electricity bills
+              </strong>
 
-
-                    <button
-                        class="goal-choice"
-                        onclick="selectGoal(this, 'longterm')">
-
-                        <span>📈</span>
-
-                        <strong>
-                            Long-term savings
-                        </strong>
-
-                    </button>
-
-                </div>
+            </button>
 
 
-                <div class="button-row">
+            <button
+              class="goal-choice"
+              onclick="selectGoal(this, 'environment')"
+            >
 
-                    <button
-                        class="back-btn"
-                        onclick="previousStep()">
+              <span>🌱</span>
 
-                        ← Back
+              <strong>
+                Reduce carbon footprint
+              </strong>
 
-                    </button>
+            </button>
 
-                    <button
-                        class="recommend-btn"
-                        onclick="generateRecommendation()">
 
-                        🌱 Generate Recommendation
+            <button
+              class="goal-choice"
+              onclick="selectGoal(this, 'independence')"
+            >
 
-                    </button>
+              <span>🔋</span>
 
-                </div>
+              <strong>
+                Energy independence
+              </strong>
 
-            </div>
+            </button>
+
+
+            <button
+              class="goal-choice"
+              onclick="selectGoal(this, 'longterm')"
+            >
+
+              <span>📈</span>
+
+              <strong>
+                Long-term savings
+              </strong>
+
+            </button>
+
+          </div>
+
+
+          <div class="button-row">
+
+            <button
+              class="back-btn"
+              onclick="previousStep()"
+            >
+              ← Back
+            </button>
+
+            <button
+              class="continue-btn"
+              onclick="validateGoal()"
+            >
+              Continue →
+            </button>
+
+          </div>
 
         </div>
+
+      </div>
+
+
+      <!-- ================= STEP 6 ================= -->
+
+      <div class="step" id="step6">
+
+        <div class="step-card">
+
+          <span class="step-label">
+            STEP 06
+          </span>
+
+          <h3>
+            🚗 Tell us about your household vehicles.
+          </h3>
+
+          <p class="instruction">
+            This helps us suggest more sustainable transportation options.
+          </p>
+
+
+          <!-- VEHICLE COUNT -->
+
+          <label>
+            How many vehicles does your household use?
+          </label>
+
+          <div class="option-grid">
+
+            <button
+              type="button"
+              class="choice"
+              data-vehicles="0"
+              onclick="selectVehicles(this, '0')"
+            >
+              None
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-vehicles="1"
+              onclick="selectVehicles(this, '1')"
+            >
+              1
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-vehicles="2"
+              onclick="selectVehicles(this, '2')"
+            >
+              2
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-vehicles="3+"
+              onclick="selectVehicles(this, '3+')"
+            >
+              3+
+            </button>
+
+          </div>
+
+
+          <!-- VEHICLE TYPE -->
+
+          <label>
+            What type of vehicle do you mainly use?
+          </label>
+
+          <select id="vehicleType">
+
+            <option value="">
+              Select vehicle type
+            </option>
+
+            <option value="petrol">
+              Petrol
+            </option>
+
+            <option value="diesel">
+              Diesel
+            </option>
+
+            <option value="cng">
+              CNG
+            </option>
+
+            <option value="electric">
+              Electric
+            </option>
+
+            <option value="mixed">
+              Mixed
+            </option>
+
+          </select>
+
+
+          <!-- VEHICLE EXPENSE -->
+
+          <label>
+            Approximate monthly fuel / charging expense
+          </label>
+
+          <div class="input-with-symbol">
+
+            <span>₹</span>
+
+            <input
+              type="number"
+              id="vehicleExpense"
+              placeholder="Example: 5000"
+              min="0"
+            />
+
+          </div>
+
+
+          <p class="helper">
+            Enter your approximate monthly spending on petrol, diesel, CNG or
+            EV charging.
+          </p>
+
+
+          <div class="button-row">
+
+            <button
+              class="back-btn"
+              onclick="previousStep()"
+            >
+              ← Back
+            </button>
+
+            <button
+              class="recommend-btn"
+              onclick="generateRecommendation()"
+            >
+              🌱 Generate Recommendation
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </section>
 
 
     <!-- ================= RESULT ================= -->
 
-    <section
-        id="result"
-        class="result-section">
+    <section id="result" class="result-section">
 
-        <div class="result-container">
+      <div class="result-container">
 
-            <span class="eyebrow">
-                YOUR PERSONALIZED RESULT
-            </span>
+        <span class="eyebrow">
+          YOUR PERSONALIZED RESULT
+        </span>
 
-            <h2>
-                Here's what we recommend.
-            </h2>
+        <h2>
+          Here's what we recommend.
+        </h2>
 
 
-            <div class="result-location">
+        <div class="result-location">
 
-                📍
+          📍
 
-                <strong id="resultDistrict">
-                    Ernakulam
-                </strong>,
+          <strong id="resultDistrict">
+            Ernakulam
+          </strong>
 
-                Kerala
-
-            </div>
-
-
-            <!-- MAIN RESULT -->
-
-            <div class="main-result">
-
-                <div class="result-icon">
-                    ☀️
-                </div>
-
-
-                <div class="result-content">
-
-                    <small>
-                        BEST MATCH FOR YOU
-                    </small>
-
-                    <!-- DYNAMIC RECOMMENDATION -->
-
-                    <h3 id="recommendedSolution">
-                        Rooftop Solar
-                    </h3>
-
-                    <p id="recommendationText">
-                        Based on your location, energy usage,
-                        property characteristics, budget and goals,
-                        rooftop solar appears to be a suitable
-                        renewable energy option for you.
-                    </p>
-
-                </div>
-
-
-                <div class="score">
-
-                    <strong id="score">
-                        92%
-                    </strong>
-
-                    <span>
-                        Suitability
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- IMPACT -->
-
-            <div class="impact-grid">
-
-                <div class="impact-card">
-
-                    <span>⚡</span>
-
-                    <strong id="systemSize">
-                        3 kW
-                    </strong>
-
-                    <p>
-                        Indicative system size
-                    </p>
-
-                </div>
-
-
-                <div class="impact-card">
-
-                    <span>💰</span>
-
-                    <strong id="savings">
-                        ₹25,000
-                    </strong>
-
-                    <p>
-                        Potential annual savings
-                    </p>
-
-                </div>
-
-
-                <div class="impact-card">
-
-                    <span>🌱</span>
-
-                    <strong id="carbon">
-                        2.5 tonnes
-                    </strong>
-
-                    <p>
-                        Potential CO₂ reduction/year
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- PROFILE -->
-
-            <div class="profile-card">
-
-                <h3>
-                    Your Energy Profile
-                </h3>
-
-                <div class="profile-grid">
-
-                    <div>
-                        <span>Location</span>
-
-                        <strong id="profileLocation">
-                            —
-                        </strong>
-                    </div>
-
-
-                    <div>
-                        <span>Monthly usage</span>
-
-                        <strong id="profileUsage">
-                            —
-                        </strong>
-                    </div>
-
-
-                    <div>
-                        <span>Property</span>
-
-                        <strong id="profileProperty">
-                            —
-                        </strong>
-                    </div>
-
-
-                    <div>
-                        <span>Goal</span>
-
-                        <strong id="profileGoal">
-                            —
-                        </strong>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <p class="disclaimer">
-                *This is an educational prototype using simplified
-                assumptions. Actual system sizing, savings and
-                environmental impact should be verified by qualified
-                professionals and current official data.
-            </p>
-
-
-            <button
-                class="restart-btn"
-                onclick="restartAssessment()">
-
-                ↻ Start Again
-
-            </button>
+          , Kerala
 
         </div>
+
+
+        <!-- ================= MAIN RESULT ================= -->
+
+        <div class="main-result">
+
+          <div class="result-icon">
+            ☀️
+          </div>
+
+
+          <div class="result-content">
+
+            <small>
+              BEST MATCH FOR YOU
+            </small>
+
+            <h3 id="recommendedSolution">
+              Rooftop Solar
+            </h3>
+
+            <p id="recommendationText">
+              Based on your location, energy usage, property characteristics,
+              budget and goals, rooftop solar appears to be a suitable
+              renewable energy option for you.
+            </p>
+
+          </div>
+
+
+          <div class="score">
+
+            <strong id="score">
+              92%
+            </strong>
+
+            <span>
+              Suitability
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= IMPACT ================= -->
+
+        <div class="impact-grid">
+
+          <div class="impact-card">
+
+            <span>⚡</span>
+
+            <strong id="systemSize">
+              3 kW
+            </strong>
+
+            <p>
+              Indicative system size
+            </p>
+
+          </div>
+
+
+          <div class="impact-card">
+
+            <span>💰</span>
+
+            <strong id="savings">
+              ₹25,000
+            </strong>
+
+            <p>
+              Potential annual savings
+            </p>
+
+          </div>
+
+
+          <div class="impact-card">
+
+            <span>🌱</span>
+
+            <strong id="carbon">
+              2.5 tonnes
+            </strong>
+
+            <p>
+              Potential CO₂ reduction/year
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= PROFILE ================= -->
+
+        <div class="profile-card">
+
+          <h3>
+            Your Energy Profile
+          </h3>
+
+
+          <div class="profile-grid">
+
+            <div>
+
+              <span>
+                Location
+              </span>
+
+              <strong id="profileLocation">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Monthly usage
+              </span>
+
+              <strong id="profileUsage">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Property
+              </span>
+
+              <strong id="profileProperty">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Goal
+              </span>
+
+              <strong id="profileGoal">
+                —
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= MOBILITY INSIGHT ================= -->
+
+        <div class="mobility-card">
+
+          <div class="mobility-header">
+
+            <span class="mobility-icon">
+              🚗
+            </span>
+
+            <div>
+
+              <small>
+                MOBILITY INSIGHT
+              </small>
+
+              <h3>
+                Your Transportation
+              </h3>
+
+            </div>
+
+          </div>
+
+
+          <div class="mobility-details">
+
+            <div>
+
+              <span>
+                Vehicles
+              </span>
+
+              <strong id="resultVehicles">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Vehicle type
+              </span>
+
+              <strong id="resultVehicleType">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Monthly expense
+              </span>
+
+              <strong id="resultVehicleExpense">
+                —
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="mobility-recommendation">
+
+            <span>
+              🌱
+            </span>
+
+            <p id="mobilityRecommendation">
+              —
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= DISCLAIMER ================= -->
+
+        <p class="disclaimer">
+
+          *This is an educational prototype using simplified assumptions.
+          Actual system sizing, savings and environmental impact should be
+          verified by qualified professionals and current official data.
+
+        </p>
+
+
+        <button
+          class="restart-btn"
+          onclick="restartAssessment()"
+        >
+          ↻ Start Again
+        </button>
+
+      </div>
 
     </section>
 
 
     <!-- ================= COMPARE ================= -->
 
-    <section
-        id="compare"
-        class="compare">
+    <section id="compare" class="compare">
 
-        <div class="section-heading">
+      <div class="section-heading">
 
-            <span class="eyebrow">
-                EXPLORE OPTIONS
-            </span>
+        <span class="eyebrow">
+          EXPLORE OPTIONS
+        </span>
 
-            <h2>
-                Renewable energy at a glance.
-            </h2>
+        <h2>
+          Renewable energy at a glance.
+        </h2>
+
+      </div>
+
+
+      <div class="energy-grid">
+
+
+        <div class="energy-card">
+
+          <div>☀️</div>
+
+          <h3>
+            Solar
+          </h3>
+
+          <p>
+            Convert sunlight into electricity using photovoltaic panels.
+          </p>
+
+          <span>
+            Home suitability: ★★★★★
+          </span>
+
+        </div>
+
+
+        <div class="energy-card">
+
+          <div>🌬️</div>
+
+          <h3>
+            Wind
+          </h3>
+
+          <p>
+            Generate electricity from moving air.
+          </p>
+
+          <span>
+            Home suitability: ★★
+          </span>
 
         </div>
 
 
-        <div class="energy-grid">
+        <div class="energy-card">
 
-            <div class="energy-card">
+          <div>💧</div>
 
-                <div>☀️</div>
+          <h3>
+            Hydro
+          </h3>
 
-                <h3>
-                    Solar
-                </h3>
+          <p>
+            Generate power from flowing water.
+          </p>
 
-                <p>
-                    Convert sunlight into electricity
-                    using photovoltaic panels.
-                </p>
-
-                <span>
-                    Home suitability: ★★★★★
-                </span>
-
-            </div>
-
-
-            <div class="energy-card">
-
-                <div>🌬️</div>
-
-                <h3>
-                    Wind
-                </h3>
-
-                <p>
-                    Generate electricity from
-                    moving air.
-                </p>
-
-                <span>
-                    Home suitability: ★★
-                </span>
-
-            </div>
-
-
-            <div class="energy-card">
-
-                <div>💧</div>
-
-                <h3>
-                    Hydro
-                </h3>
-
-                <p>
-                    Generate power from
-                    flowing water.
-                </p>
-
-                <span>
-                    Home suitability: ★★
-                </span>
-
-            </div>
-
-
-            <div class="energy-card">
-
-                <div>🌱</div>
-
-                <h3>
-                    Biomass
-                </h3>
-
-                <p>
-                    Produce energy from
-                    organic materials.
-                </p>
-
-                <span>
-                    Home suitability: ★★★
-                </span>
-
-            </div>
+          <span>
+            Home suitability: ★★
+          </span>
 
         </div>
+
+
+        <div class="energy-card">
+
+          <div>🌱</div>
+
+          <h3>
+            Biomass
+          </h3>
+
+          <p>
+            Produce energy from organic materials.
+          </p>
+
+          <span>
+            Home suitability: ★★★
+          </span>
+
+        </div>
+
+      </div>
 
     </section>
 
@@ -1000,31 +1205,26 @@
 
     <footer>
 
-        <div class="logo">
-            
-            
-            RenewWise
-        </div>
+      <div class="logo">
+        RenewWise
+      </div>
 
-        <p>
-            Renewable Energy Advisory System
-        </p>
+      <p>
+        Renewable Energy Advisory System
+      </p>
 
-        <small>
-            Student Sustainability Project
-        </small>
+      <small>
+        Student Sustainability Project
+      </small>
 
     </footer>
 
 
     <!-- ================= LEAFLET ================= -->
 
-    <script
-        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script src="script.js"></script>
 
-</body>
-
+  </body>
 </html>

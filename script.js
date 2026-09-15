@@ -16,6 +16,8 @@ let selectedBudget = "";
 
 let selectedGoal = "";
 
+let selectedVehicles = "";
+
 let map;
 
 
@@ -42,10 +44,6 @@ function initializeMap() {
     });
 
 
-    /*
-        Load Kerala GeoJSON
-    */
-
     fetch("Kerala_districts.geojson")
 
         .then(response => {
@@ -66,18 +64,12 @@ function initializeMap() {
         .then(data => {
 
             /*
-                IMPORTANT:
+                Only show Kerala's 14 districts.
 
-                The GeoJSON file contains many
-                OpenStreetMap features.
-
-                We only want Kerala's
-                14 administrative districts.
-
-                Districts have:
+                Districts:
                 admin_level = 5
                 boundary = administrative
-                geometry = Polygon/MultiPolygon
+                geometry = Polygon / MultiPolygon
             */
 
             const districtLayer = L.geoJSON(
@@ -133,10 +125,6 @@ function initializeMap() {
                             const district =
                                 getDistrictName(feature);
 
-
-                            /*
-                                Show district name
-                            */
 
                             layer.bindTooltip(
                                 district,
@@ -223,25 +211,28 @@ function initializeMap() {
             );
 
 
-            /*
-                Add only filtered districts
-                to the map.
-            */
+            /* ================= ADD DISTRICTS ================= */
 
             districtLayer.addTo(map);
 
 
-            /*
-                Automatically fit Kerala
-                inside the map.
-            */
+            /* ================= FIT KERALA ================= */
 
-            map.fitBounds(
-                districtLayer.getBounds(),
-                {
-                    padding: [20, 20]
-                }
-            );
+            const bounds =
+                districtLayer.getBounds();
+
+            if (bounds.isValid()) {
+
+                map.fitBounds(
+                    bounds,
+                    {
+                        padding: [25, 25],
+
+                        maxZoom: 8
+                    }
+                );
+
+            }
 
         })
 
@@ -290,11 +281,6 @@ function getDistrictName(feature) {
         feature.properties || {};
 
 
-    /*
-        Different GeoJSON datasets
-        may use different property names.
-    */
-
     const possibleNames = [
 
         "district",
@@ -334,14 +320,6 @@ function getDistrictName(feature) {
     }
 
 
-    /*
-        Your GeoJSON uses "name"
-        for the district name.
-
-        This fallback prevents
-        unwanted Unknown District labels.
-    */
-
     return "Unknown District";
 
 }
@@ -355,17 +333,11 @@ function selectDistrict(
     districtLayer
 ) {
 
-    /*
-        Save selected district
-    */
-
     selectedDistrict =
         normalizeDistrict(district);
 
 
-    /*
-        Reset all districts
-    */
+    /* Reset all districts */
 
     districtLayer.eachLayer(
         function (layer) {
@@ -378,9 +350,7 @@ function selectDistrict(
     );
 
 
-    /*
-        Highlight selected district
-    */
+    /* Highlight selected district */
 
     clickedLayer.setStyle({
 
@@ -399,9 +369,7 @@ function selectDistrict(
     });
 
 
-    /*
-        Show selected location card
-    */
+    /* Show selected location */
 
     document
         .getElementById(
@@ -421,9 +389,7 @@ function selectDistrict(
         ", Kerala";
 
 
-    /*
-        Enable Continue button
-    */
+    /* Enable Continue */
 
     const continueButton =
         document.getElementById(
@@ -439,9 +405,7 @@ function selectDistrict(
         "1";
 
 
-    /*
-        Zoom into selected district
-    */
+    /* Zoom selected district */
 
     map.fitBounds(
         clickedLayer.getBounds(),
@@ -587,9 +551,7 @@ function showStep(stepNumber) {
         stepNumber;
 
 
-    /*
-        Update progress
-    */
+    /* ================= UPDATE PROGRESS ================= */
 
     document
         .getElementById(
@@ -606,14 +568,12 @@ function showStep(stepNumber) {
         .style.width =
         (
             stepNumber /
-            5 *
+            6 *
             100
         ) + "%";
 
 
-    /*
-        Scroll to advisor
-    */
+    /* ================= SCROLL ================= */
 
     document
         .getElementById(
@@ -631,7 +591,7 @@ function showStep(stepNumber) {
 function nextStep() {
 
     if (
-        currentStep < 5
+        currentStep < 6
     ) {
 
         showStep(
@@ -707,7 +667,7 @@ function selectSpace(button) {
 
     document
         .querySelectorAll(
-            ".choice"
+            "#step3 .choice"
         )
         .forEach(
             item => {
@@ -855,9 +815,9 @@ function selectGoal(
 }
 
 
-/* ================= RECOMMENDATION ================= */
+/* ================= GOAL VALIDATION ================= */
 
-function generateRecommendation() {
+function validateGoal() {
 
     if (
         selectedGoal === ""
@@ -866,6 +826,117 @@ function generateRecommendation() {
         alert(
             "Please select your main goal."
         );
+
+        return;
+
+    }
+
+
+    nextStep();
+
+}
+
+
+/* ================= VEHICLES ================= */
+
+function selectVehicles(
+    button,
+    value
+) {
+
+    document
+        .querySelectorAll(
+            "#step6 .choice"
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            }
+        );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+
+    selectedVehicles =
+        value;
+
+}
+
+
+/* ================= VEHICLE VALIDATION ================= */
+
+function validateVehicles() {
+
+    /*
+        Number of vehicles is required.
+        Vehicle type and monthly expense are optional.
+    */
+
+    if (
+        selectedVehicles === ""
+    ) {
+
+        alert(
+            "Please select how many vehicles your household uses."
+        );
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+/* ================= VEHICLE TYPE NAME ================= */
+
+function getVehicleTypeName(value) {
+
+    const names = {
+
+        petrol:
+            "Petrol",
+
+        diesel:
+            "Diesel",
+
+        cng:
+            "CNG",
+
+        electric:
+            "Electric",
+
+        mixed:
+            "Mixed"
+
+    };
+
+
+    return (
+        names[value] ||
+        "—"
+    );
+
+}
+
+
+/* ================= RECOMMENDATION ================= */
+
+function generateRecommendation() {
+
+    /* Validate vehicle section */
+
+    if (
+        !validateVehicles()
+    ) {
 
         return;
 
@@ -908,14 +979,25 @@ function generateRecommendation() {
             .value;
 
 
-    /*
-        Simplified consumption estimate.
+    const vehicleType =
+        document
+            .getElementById(
+                "vehicleType"
+            )
+            .value;
 
-        This is ONLY for the student
-        prototype and should later be
-        replaced with properly sourced
-        tariff/consumption calculations.
-    */
+
+    const vehicleExpense =
+        Number(
+            document
+                .getElementById(
+                    "vehicleExpense"
+                )
+                .value
+        ) || 0;
+
+
+    /* ================= CONSUMPTION ESTIMATE ================= */
 
     if (
         consumption === 0 &&
@@ -934,10 +1016,6 @@ function generateRecommendation() {
 
     let score = 50;
 
-
-    /*
-        Location factor
-    */
 
     const solarFriendly = [
 
@@ -971,9 +1049,7 @@ function generateRecommendation() {
     }
 
 
-    /*
-        Sunlight
-    */
+    /* ================= SUNLIGHT ================= */
 
     if (
         sunlight === "high"
@@ -1000,9 +1076,7 @@ function generateRecommendation() {
     }
 
 
-    /*
-        Rooftop space
-    */
+    /* ================= ROOFTOP SPACE ================= */
 
     if (
         selectedSpace === "large"
@@ -1029,9 +1103,7 @@ function generateRecommendation() {
     }
 
 
-    /*
-        Property type
-    */
+    /* ================= PROPERTY ================= */
 
     if (
         property === "house"
@@ -1050,9 +1122,7 @@ function generateRecommendation() {
     }
 
 
-    /*
-        Budget
-    */
+    /* ================= BUDGET ================= */
 
     if (
         selectedBudget === "high" ||
@@ -1072,12 +1142,7 @@ function generateRecommendation() {
     }
 
 
-    /*
-        Goal
-
-        Energy independence is
-        included here.
-    */
+    /* ================= GOAL ================= */
 
     if (
         selectedGoal === "saving" ||
@@ -1091,9 +1156,7 @@ function generateRecommendation() {
     }
 
 
-    /*
-        Keep score between 0 and 99
-    */
+    /* ================= LIMIT SCORE ================= */
 
     score =
         Math.max(
@@ -1104,75 +1167,114 @@ function generateRecommendation() {
             )
         );
 
-        /* ================= RECOMMENDED SOLUTION ================= */
 
-let recommendedSolution = "Rooftop Solar";
-let recommendationText =
-    "Rooftop solar is a suitable option based on your property, sunlight availability and energy needs.";
+    /* =====================================================
+       RECOMMENDED RENEWABLE ENERGY SOLUTION
+       ===================================================== */
 
-if (
-    sunlight === "low" &&
-    selectedSpace === "small"
-) {
-    recommendedSolution = "Solar Water Heating";
-
-    recommendationText =
-        "Solar water heating may be a more practical renewable-energy option when rooftop electricity generation is limited by shade and available space.";
-}
-
-else if (
-    selectedSpace === "small" &&
-    sunlight === "medium"
-) {
-    recommendedSolution = "Solar Water Heating";
-
-    recommendationText =
-        "Solar water heating may be suitable when available installation space is limited and the rooftop receives partial sunlight.";
-}
-
-else if (
-    selectedGoal === "environment" &&
-    property === "commercial" &&
-    selectedSpace === "large" &&
-    sunlight === "high"
-) {
-    recommendedSolution = "Rooftop Solar";
-
-    recommendationText =
-        "Rooftop solar is well suited to a large commercial property with good sunlight availability and a focus on reducing environmental impact.";
-}
-
-else if (
-    selectedGoal === "independence" &&
-    selectedSpace === "large" &&
-    sunlight === "high"
-) {
-    recommendedSolution = "Rooftop Solar + Battery Storage";
-
-    recommendationText =
-        "A rooftop solar system combined with battery storage can support greater energy independence where sufficient rooftop space and sunlight are available.";
-}
-
-else if (
-    selectedGoal === "saving" ||
-    selectedGoal === "longterm"
-) {
-    recommendedSolution = "Rooftop Solar";
-
-    recommendationText =
-        "Rooftop solar can help reduce dependence on grid electricity and may support long-term electricity-cost savings.";
-}
+    let recommendedSolution =
+        "Rooftop Solar";
 
 
-/* Display recommendation */
+    let recommendationText =
+        "Rooftop solar is a suitable option based on your property, sunlight availability and energy needs.";
 
-document.getElementById(
-    "recommendedSolution"
-).textContent = recommendedSolution;
 
-document.getElementById(
-    "recommendationText"
-).textContent = recommendationText;
+    if (
+        sunlight === "low" &&
+        selectedSpace === "small"
+    ) {
+
+        recommendedSolution =
+            "Solar Water Heating";
+
+
+        recommendationText =
+            "Solar water heating may be a more practical renewable-energy option when rooftop electricity generation is limited by shade and available space.";
+
+    }
+
+
+    else if (
+        selectedSpace === "small" &&
+        sunlight === "medium"
+    ) {
+
+        recommendedSolution =
+            "Solar Water Heating";
+
+
+        recommendationText =
+            "Solar water heating may be suitable when available installation space is limited and the rooftop receives partial sunlight.";
+
+    }
+
+
+    else if (
+        selectedGoal === "environment" &&
+        property === "commercial" &&
+        selectedSpace === "large" &&
+        sunlight === "high"
+    ) {
+
+        recommendedSolution =
+            "Rooftop Solar";
+
+
+        recommendationText =
+            "Rooftop solar is well suited to a large commercial property with good sunlight availability and a focus on reducing environmental impact.";
+
+    }
+
+
+    else if (
+        selectedGoal === "independence" &&
+        selectedSpace === "large" &&
+        sunlight === "high"
+    ) {
+
+        recommendedSolution =
+            "Rooftop Solar + Battery Storage";
+
+
+        recommendationText =
+            "A rooftop solar system combined with battery storage can support greater energy independence where sufficient rooftop space and sunlight are available.";
+
+    }
+
+
+    else if (
+        selectedGoal === "saving" ||
+        selectedGoal === "longterm"
+    ) {
+
+        recommendedSolution =
+            "Rooftop Solar";
+
+
+        recommendationText =
+            "Rooftop solar can help reduce dependence on grid electricity and may support long-term electricity-cost savings.";
+
+    }
+
+
+    /* ================= DISPLAY MAIN RECOMMENDATION ================= */
+
+    document
+        .getElementById(
+            "recommendedSolution"
+        )
+        .textContent =
+        recommendedSolution;
+
+
+    document
+        .getElementById(
+            "recommendationText"
+        )
+        .textContent =
+        recommendationText;
+
 
     /* ================= SYSTEM SIZE ================= */
 
@@ -1262,7 +1364,79 @@ document.getElementById(
         ).toFixed(1);
 
 
-    /* ================= DISPLAY ================= */
+    /* =====================================================
+       MOBILITY RECOMMENDATION
+       ===================================================== */
+
+    let mobilityRecommendation =
+        "Consider a cleaner transportation option when replacing your current vehicle.";
+
+
+    if (
+        selectedVehicles === "0"
+    ) {
+
+        mobilityRecommendation =
+            "Consider public transport, walking or cycling where practical to reduce transportation emissions.";
+
+    }
+
+
+    else if (
+        vehicleType === "petrol" ||
+        vehicleType === "diesel"
+    ) {
+
+        if (
+            vehicleExpense >= 5000
+        ) {
+
+            mobilityRecommendation =
+                "Your household has relatively high monthly fuel spending. Consider an electric vehicle (EV) or CNG vehicle when replacing a vehicle.";
+
+        }
+
+        else {
+
+            mobilityRecommendation =
+                "Consider an EV or CNG vehicle when your current petrol or diesel vehicle is due for replacement.";
+
+        }
+
+    }
+
+
+    else if (
+        vehicleType === "cng"
+    ) {
+
+        mobilityRecommendation =
+            "CNG is already a cleaner alternative to conventional petrol or diesel use. Consider an EV when replacing your vehicle.";
+
+    }
+
+
+    else if (
+        vehicleType === "electric"
+    ) {
+
+        mobilityRecommendation =
+            "Electric mobility is already a cleaner transportation choice. Continue using your EV efficiently.";
+
+    }
+
+
+    else if (
+        vehicleType === "mixed"
+    ) {
+
+        mobilityRecommendation =
+            "Consider gradually replacing petrol or diesel vehicles with EVs or CNG vehicles.";
+
+    }
+
+
+    /* ================= DISPLAY RESULT ================= */
 
     document
         .getElementById(
@@ -1346,6 +1520,49 @@ document.getElementById(
         .textContent =
         carbonReduction +
         " tonnes";
+
+
+    /* ================= MOBILITY RESULT ================= */
+
+    document
+        .getElementById(
+            "resultVehicles"
+        )
+        .textContent =
+        selectedVehicles === "0"
+            ? "None"
+            : selectedVehicles;
+
+
+    document
+        .getElementById(
+            "resultVehicleType"
+        )
+        .textContent =
+        getVehicleTypeName(
+            vehicleType
+        );
+
+
+    document
+        .getElementById(
+            "resultVehicleExpense"
+        )
+        .textContent =
+        vehicleExpense > 0
+            ? "₹" +
+              vehicleExpense.toLocaleString(
+                  "en-IN"
+              )
+            : "Not provided";
+
+
+    document
+        .getElementById(
+            "mobilityRecommendation"
+        )
+        .textContent =
+        mobilityRecommendation;
 
 
     /* ================= SHOW RESULT ================= */
@@ -1439,6 +1656,10 @@ function restartAssessment() {
 
     selectedGoal = "";
 
+    selectedVehicles = "";
+
+
+    /* Hide result */
 
     document
         .getElementById(
@@ -1449,12 +1670,83 @@ function restartAssessment() {
         );
 
 
-    document
-        .getElementById(
-            "energyForm"
-        )
-        ?.reset();
+    /* Reset form fields */
 
+    const energyForm =
+        document.getElementById(
+            "energyForm"
+        );
+
+
+    if (energyForm) {
+
+        energyForm.reset();
+
+    }
+
+
+    const bill =
+        document.getElementById(
+            "bill"
+        );
+
+    const consumption =
+        document.getElementById(
+            "consumption"
+        );
+
+    const property =
+        document.getElementById(
+            "property"
+        );
+
+    const sunlight =
+        document.getElementById(
+            "sunlight"
+        );
+
+    const vehicleType =
+        document.getElementById(
+            "vehicleType"
+        );
+
+    const vehicleExpense =
+        document.getElementById(
+            "vehicleExpense"
+        );
+
+
+    if (bill) {
+        bill.value = "";
+    }
+
+
+    if (consumption) {
+        consumption.value = "";
+    }
+
+
+    if (property) {
+        property.value = "";
+    }
+
+
+    if (sunlight) {
+        sunlight.value = "";
+    }
+
+
+    if (vehicleType) {
+        vehicleType.value = "";
+    }
+
+
+    if (vehicleExpense) {
+        vehicleExpense.value = "";
+    }
+
+
+    /* Remove selected states */
 
     document
         .querySelectorAll(
@@ -1471,6 +1763,8 @@ function restartAssessment() {
         );
 
 
+    /* Hide selected location */
+
     document
         .getElementById(
             "selectedLocation"
@@ -1479,6 +1773,8 @@ function restartAssessment() {
             "hidden"
         );
 
+
+    /* Disable location button */
 
     document
         .getElementById(
@@ -1489,14 +1785,11 @@ function restartAssessment() {
 
     currentStep = 1;
 
+
     showStep(1);
 
 
-    /*
-        Rebuild map
-        so all districts return
-        to their original state.
-    */
+    /* Rebuild map */
 
     if (map) {
 
@@ -1523,64 +1816,105 @@ document.addEventListener(
     }
 );
 
+
 /* =====================================================
    DARK / LIGHT MODE
    ===================================================== */
 
 function toggleTheme() {
 
-    document.body.classList.toggle("dark-mode");
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
 
     const isDark =
-        document.body.classList.contains("dark-mode");
+        document.body.classList.contains(
+            "dark-mode"
+        );
+
 
     const themeIcon =
-        document.getElementById("themeIcon");
+        document.getElementById(
+            "themeIcon"
+        );
+
 
     if (isDark) {
 
-        themeIcon.textContent = "☀️";
+        themeIcon.textContent =
+            "☀️";
+
 
         localStorage.setItem(
             "renewwise-theme",
             "dark"
         );
 
-    } else {
+    }
 
-        themeIcon.textContent = "🌙";
+    else {
+
+        themeIcon.textContent =
+            "🌙";
+
 
         localStorage.setItem(
             "renewwise-theme",
             "light"
         );
+
     }
+
 }
 
 
-/* Remember user's theme */
+/* ================= REMEMBER THEME ================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    const savedTheme =
-        localStorage.getItem("renewwise-theme");
+        const savedTheme =
+            localStorage.getItem(
+                "renewwise-theme"
+            );
 
-    const themeIcon =
-        document.getElementById("themeIcon");
 
-    if (savedTheme === "dark") {
+        const themeIcon =
+            document.getElementById(
+                "themeIcon"
+            );
 
-        document.body.classList.add("dark-mode");
 
-        if (themeIcon) {
-            themeIcon.textContent = "☀️";
+        if (
+            savedTheme === "dark"
+        ) {
+
+            document.body.classList.add(
+                "dark-mode"
+            );
+
+
+            if (themeIcon) {
+
+                themeIcon.textContent =
+                    "☀️";
+
+            }
+
         }
 
-    } else {
+        else {
 
-        if (themeIcon) {
-            themeIcon.textContent = "🌙";
+            if (themeIcon) {
+
+                themeIcon.textContent =
+                    "🌙";
+
+            }
+
         }
+
     }
-
-});
+);
