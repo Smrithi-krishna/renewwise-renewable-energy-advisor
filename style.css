@@ -1,0 +1,1670 @@
+/* =====================================================
+   RENEWWISE
+   Renewable Energy Advisory System
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6f8f4;
+    color: #19382b;
+    line-height: 1.6;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    min-height: 72px;
+    padding: 0 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e5ebe5;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #496055;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.navbar nav a:hover {
+    color: #2e7a4d;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 620px;
+    padding: 90px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    background: linear-gradient(
+        120deg,
+        #edf6e9,
+        #f9fbf7
+    );
+}
+
+.hero-text {
+    max-width: 650px;
+}
+
+.eyebrow {
+    color: #3c8057;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 6vw, 76px);
+    line-height: 1.05;
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    color: #398052;
+}
+
+.hero-text p {
+    max-width: 560px;
+    color: #68776e;
+    font-size: 18px;
+    margin-bottom: 32px;
+}
+
+/* ================= BUTTONS ================= */
+
+.primary-btn,
+.continue-btn,
+.recommend-btn {
+    border: none;
+    background: #2f7049;
+    color: white;
+    padding: 15px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.primary-btn:hover,
+.continue-btn:hover,
+.recommend-btn:hover {
+    background: #235537;
+    transform: translateY(-2px);
+}
+
+.continue-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+}
+
+/* ================= HERO VISUAL ================= */
+
+.hero-visual {
+    width: 360px;
+    height: 360px;
+    min-width: 360px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: #dfeeda;
+    border-radius: 50%;
+}
+
+.sun-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #fff7ce;
+    font-size: 85px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.floating-card {
+    position: absolute;
+    background: white;
+    padding: 13px 18px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(30, 60, 40, 0.12);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.card-one {
+    top: 30px;
+    left: -20px;
+}
+
+.card-two {
+    bottom: 35px;
+    right: -30px;
+}
+
+/* ================= ADVISOR ================= */
+
+.advisor {
+    padding: 90px 7%;
+}
+
+.advisor-heading {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.advisor-heading h2 {
+    font-size: 42px;
+    line-height: 1.15;
+    margin: 12px 0;
+}
+
+.advisor-heading p {
+    color: #69776f;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-area {
+    max-width: 850px;
+    margin: 45px auto 30px;
+}
+
+.progress-bar {
+    height: 7px;
+    background: #dfe8df;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progressFill {
+    width: 20%;
+    height: 100%;
+    background: #3d8057;
+    transition: width 0.4s ease;
+}
+
+.step-text {
+    text-align: right;
+    margin-top: 8px;
+    color: #718077;
+    font-size: 13px;
+}
+
+/* ================= STEPS ================= */
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.step-card {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 22px;
+    border: 1px solid #e3eae3;
+    box-shadow: 0 20px 60px rgba(40, 70, 50, 0.06);
+}
+
+.step-label {
+    color: #4a805e;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.step-card h3 {
+    font-size: 28px;
+    margin: 10px 0 5px;
+}
+
+.instruction {
+    color: #738078;
+    margin-bottom: 25px;
+}
+
+/* ================= MAP ================= */
+
+#keralaMap {
+    height: 520px;
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #dce5dc;
+    background: #eef5eb;
+}
+
+.leaflet-container {
+    font-family: Arial, sans-serif;
+}
+
+.district-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #234b35;
+    font-size: 10px;
+    font-weight: 700;
+    text-shadow:
+        0 1px 2px white,
+        1px 0 2px white,
+        -1px 0 2px white;
+}
+
+.district-label::before {
+    display: none !important;
+}
+
+/* ================= LOCATION CARD ================= */
+
+.selected-location {
+    margin-top: 20px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #edf7eb;
+    border: 1px solid #cfe4ce;
+    border-radius: 14px;
+}
+
+.selected-location.hidden {
+    display: none;
+}
+
+.location-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    display: grid;
+    place-items: center;
+    background: white;
+    border-radius: 10px;
+}
+
+.selected-location small {
+    display: block;
+    color: #6d7c72;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.selected-location strong {
+    font-size: 18px;
+}
+
+.check {
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #3b8055;
+    color: white;
+}
+
+/* ================= FORM ================= */
+
+.step-card label {
+    display: block;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 9px;
+    border: 1px solid #cfdad1;
+    background: white;
+    font-size: 15px;
+    color: #19382b;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #a8c9ae;
+    border-color: #7eaa87;
+}
+
+/* ================= INPUT WITH SYMBOL ================= */
+
+.input-with-symbol {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cfdad1;
+    border-radius: 9px;
+    padding: 0 14px;
+    background: white;
+}
+
+.input-with-symbol input {
+    border: none;
+    background: transparent;
+}
+
+.input-with-symbol input:focus {
+    outline: none;
+}
+
+.input-with-symbol span {
+    color: #637268;
+    font-weight: 700;
+}
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    color: #87938c;
+    font-size: 12px;
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #e0e6e0;
+}
+
+.helper {
+    color: #748078;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+/* ================= OPTIONS ================= */
+
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.choice,
+.budget-choice,
+.goal-choice {
+    background: white;
+    border: 1px solid #d5ded6;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.choice:hover,
+.budget-choice:hover,
+.goal-choice:hover {
+    border-color: #4c8b60;
+    background: #f3f8f1;
+    transform: translateY(-1px);
+}
+
+.choice.selected,
+.budget-choice.selected,
+.goal-choice.selected {
+    background: #e8f3e6;
+    border-color: #3c8055;
+    box-shadow: 0 0 0 2px #c5dec8;
+}
+
+.choice {
+    padding: 16px;
+}
+
+/* ================= BUDGET ================= */
+
+.budget-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.budget-choice {
+    text-align: left;
+    padding: 20px;
+}
+
+.budget-choice strong {
+    display: block;
+    font-size: 16px;
+}
+
+.budget-choice span {
+    color: #758078;
+    font-size: 13px;
+}
+
+/* ================= GOALS ================= */
+
+.goal-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.goal-choice {
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.goal-choice span {
+    font-size: 30px;
+    min-width: 35px;
+}
+
+/* ================= BUTTON ROW ================= */
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.back-btn {
+    border: 1px solid #cbd6cd;
+    background: white;
+    color: #4c6055;
+    padding: 14px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.back-btn:hover {
+    background: #f2f6f2;
+    border-color: #9fb2a4;
+}
+
+/* ================= RESULT ================= */
+
+.result-section {
+    display: none;
+    padding: 90px 7%;
+    background: #eaf4e7;
+}
+
+.result-section.show {
+    display: block;
+}
+
+.result-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.result-container h2 {
+    font-size: 44px;
+    margin: 10px 0;
+}
+
+.result-location {
+    color: #65746c;
+    margin-bottom: 30px;
+}
+
+/* ================= MAIN RESULT ================= */
+
+.main-result {
+    display: grid;
+    grid-template-columns: 90px 1fr 140px;
+    gap: 25px;
+    align-items: center;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(30, 60, 40, 0.08);
+}
+
+.result-icon {
+    width: 80px;
+    height: 80px;
+    display: grid;
+    place-items: center;
+    background: #eef7ea;
+    border-radius: 18px;
+    font-size: 42px;
+}
+
+.result-content small {
+    color: #548063;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.result-content h3 {
+    font-size: 30px;
+    margin: 5px 0;
+}
+
+.result-content p {
+    color: #68766e;
+}
+
+.score {
+    text-align: center;
+}
+
+.score strong {
+    display: block;
+    font-size: 42px;
+    color: #3c8057;
+}
+
+.score span {
+    color: #738078;
+}
+
+/* ================= IMPACT ================= */
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 22px;
+}
+
+.impact-card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.impact-card span {
+    display: block;
+    font-size: 30px;
+}
+
+.impact-card strong {
+    display: block;
+    font-size: 26px;
+    margin: 7px 0;
+}
+
+.impact-card p {
+    color: #728078;
+    font-size: 13px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card {
+    background: white;
+    margin-top: 22px;
+    padding: 28px;
+    border-radius: 18px;
+}
+
+.profile-card h3 {
+    margin-bottom: 20px;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.profile-grid span {
+    display: block;
+    color: #77837c;
+    font-size: 12px;
+}
+
+.profile-grid strong {
+    display: block;
+    margin-top: 5px;
+}
+
+.disclaimer {
+    margin-top: 20px;
+    color: #6c786f;
+    font-size: 12px;
+}
+
+.restart-btn {
+    margin-top: 25px;
+    border: none;
+    background: #214f36;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.restart-btn:hover {
+    background: #163c28;
+    transform: translateY(-1px);
+}
+
+/* ================= COMPARE ================= */
+
+.compare {
+    padding: 90px 7%;
+}
+
+.section-heading {
+    max-width: 650px;
+    margin-bottom: 45px;
+}
+
+.section-heading h2 {
+    font-size: 42px;
+    margin-top: 10px;
+}
+
+.energy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.energy-card {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid #e1e8e1;
+    transition: 0.2s;
+}
+
+.energy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(30, 60, 40, 0.08);
+}
+
+.energy-card > div {
+    font-size: 42px;
+}
+
+.energy-card h3 {
+    font-size: 23px;
+    margin: 10px 0;
+}
+
+.energy-card p {
+    color: #707c75;
+    margin-bottom: 20px;
+}
+
+.energy-card span {
+    color: #4d7e5b;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 40px 7%;
+    background: #143225;
+    color: white;
+}
+
+footer p,
+footer small {
+    color: #b7c7bd;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1000px) {
+
+    .hero {
+        gap: 40px;
+    }
+
+    .hero-visual {
+        width: 300px;
+        height: 300px;
+        min-width: 300px;
+    }
+
+    .sun-circle {
+        width: 150px;
+        height: 150px;
+        font-size: 70px;
+    }
+
+    .energy-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .profile-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .navbar nav {
+        display: none;
+    }
+
+    .hero,
+    .advisor,
+    .compare,
+    .result-section {
+        padding: 60px 5%;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+        gap: 45px;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero-visual {
+        width: 260px;
+        height: 260px;
+        min-width: 260px;
+    }
+
+    .sun-circle {
+        width: 130px;
+        height: 130px;
+        font-size: 60px;
+    }
+
+    .floating-card {
+        font-size: 12px;
+        padding: 10px 13px;
+    }
+
+    .card-one {
+        left: -10px;
+    }
+
+    .card-two {
+        right: -10px;
+    }
+
+    .advisor-heading h2,
+    .result-container h2,
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .step-card {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .step-card h3 {
+        font-size: 24px;
+    }
+
+    #keralaMap {
+        height: 400px;
+    }
+
+    .option-grid,
+    .budget-options,
+    .goal-options,
+    .energy-grid,
+    .impact-grid,
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-result {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .result-icon {
+        margin: auto;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .button-row button {
+        width: 100%;
+    }
+
+    .selected-location {
+        align-items: flex-start;
+    }
+
+    .selected-location strong {
+        font-size: 16px;
+    }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero-visual {
+        width: 220px;
+        height: 220px;
+        min-width: 220px;
+    }
+
+    .sun-circle {
+        width: 110px;
+        height: 110px;
+        font-size: 50px;
+    }
+
+    .floating-card {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    #keralaMap {
+        height: 350px;
+    }
+
+    .step-card {
+        padding: 20px 15px;
+    }
+
+    .main-result {
+        padding: 22px;
+    }
+
+    .result-content h3 {
+        font-size: 25px;
+    }
+
+    .score strong {
+        font-size: 36px;
+    }
+}
+
+/* =====================================================
+   THEME SYSTEM
+   ===================================================== */
+
+:root {
+    --bg-main: #f7faf5;
+    --bg-secondary: #eef6eb;
+    --card-bg: #ffffff;
+    --text-main: #173b2b;
+    --text-secondary: #547064;
+    --primary: #2f7d4d;
+    --primary-dark: #205d39;
+    --border: rgba(40, 90, 55, 0.12);
+    --shadow: 0 20px 50px rgba(25, 70, 40, 0.10);
+}
+
+
+/* DARK MODE */
+
+body.dark-mode {
+
+    --bg-main: #0c1712;
+    --bg-secondary: #12231a;
+    --card-bg: #17291f;
+    --text-main: #e8f5eb;
+    --text-secondary: #a8c2b0;
+    --primary: #63b97d;
+    --primary-dark: #4c9e66;
+    --border: rgba(180, 230, 190, 0.12);
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Apply theme */
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease;
+}
+
+
+/* Common sections */
+
+.hero,
+.advisor,
+.compare,
+.result-section {
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease;
+}
+
+
+/* Cards */
+
+.step-card,
+.profile-card,
+.impact-card,
+.energy-card,
+.main-result {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+
+    border-color: var(--border);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.3s ease;
+}
+
+
+/* =====================================================
+   THEME TOGGLE
+   ===================================================== */
+
+.theme-toggle {
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--border);
+
+    background: var(--card-bg);
+
+    color: var(--text-main);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.theme-toggle:hover {
+
+    transform: rotate(20deg) scale(1.08);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   SOLAR SYSTEM HERO
+   ===================================================== */
+
+.hero-visual {
+
+    position: relative;
+
+    min-height: 520px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Solar system container */
+
+.solar-system {
+
+    position: relative;
+
+    width: 430px;
+    height: 430px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    animation: solarFloat 6s ease-in-out infinite;
+}
+
+
+/* Floating entire solar system */
+
+@keyframes solarFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* =====================================================
+   SUN
+   ===================================================== */
+
+.sun-core {
+
+    position: absolute;
+
+    width: 125px;
+    height: 125px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 58px;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff4a8 0%,
+            #ffd84d 45%,
+            #ffad32 75%,
+            #f47b20 100%
+        );
+
+    box-shadow:
+        0 0 25px rgba(255, 190, 60, 0.55),
+        0 0 70px rgba(255, 190, 60, 0.30),
+        0 0 130px rgba(255, 190, 60, 0.18);
+
+    z-index: 5;
+
+    animation: sunPulse 3s ease-in-out infinite;
+}
+
+
+@keyframes sunPulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+
+/* =====================================================
+   ORBITS
+   ===================================================== */
+
+.orbit {
+
+    position: absolute;
+
+    border: 1px solid rgba(70, 130, 85, 0.22);
+
+    border-radius: 50%;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+
+.orbit-one {
+
+    width: 190px;
+    height: 190px;
+
+    animation: orbitRotateOne 8s linear infinite;
+}
+
+
+.orbit-two {
+
+    width: 290px;
+    height: 290px;
+
+    animation: orbitRotateTwo 13s linear infinite reverse;
+}
+
+
+.orbit-three {
+
+    width: 390px;
+    height: 390px;
+
+    animation: orbitRotateThree 20s linear infinite;
+}
+
+
+/* =====================================================
+   ORBIT ROTATION
+   ===================================================== */
+
+@keyframes orbitRotateOne {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+
+@keyframes orbitRotateTwo {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+
+@keyframes orbitRotateThree {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   PLANETS
+   ===================================================== */
+
+.planet {
+
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.12);
+
+    pointer-events: auto;
+}
+
+
+/* Position each planet */
+
+.planet-one {
+
+    top: -24px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+.planet-two {
+
+    right: -24px;
+    top: 50%;
+
+    transform: translateY(-50%);
+}
+
+
+.planet-three {
+
+    bottom: -24px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+/* =====================================================
+   FLOATING CARDS
+   ===================================================== */
+
+.floating-card {
+
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 20px;
+
+    background: var(--card-bg);
+
+    color: var(--text-main);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 35px rgba(30, 70, 40, 0.12);
+
+    z-index: 10;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.floating-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 20px 40px rgba(30, 70, 40, 0.20);
+}
+
+
+.floating-card span {
+
+    font-size: 22px;
+}
+
+
+.floating-card strong {
+
+    display: block;
+
+    font-size: 15px;
+}
+
+
+.floating-card small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+
+.card-one {
+
+    top: 70px;
+    left: 10px;
+
+    animation: cardFloatOne 5s ease-in-out infinite;
+}
+
+
+.card-two {
+
+    right: -5px;
+    bottom: 80px;
+
+    animation: cardFloatTwo 6s ease-in-out infinite;
+}
+
+
+@keyframes cardFloatOne {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+@keyframes cardFloatTwo {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+
+/* =====================================================
+   EXTRA ENERGY BADGE
+   ===================================================== */
+
+.energy-badge {
+
+    position: absolute;
+
+    bottom: 15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px 17px;
+
+    background: rgba(255,255,255,0.85);
+
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(70,130,85,0.15);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 12px 30px rgba(30,70,40,0.10);
+
+    z-index: 10;
+}
+
+
+.dark-mode .energy-badge {
+
+    background: rgba(23,41,31,0.85);
+}
+
+
+.energy-badge > span {
+
+    font-size: 21px;
+}
+
+
+.energy-badge strong {
+
+    display: block;
+
+    color: var(--text-main);
+
+    font-size: 13px;
+}
+
+
+.energy-badge small {
+
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   DARK MODE HERO
+   ===================================================== */
+
+.dark-mode .hero {
+
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(72, 150, 90, 0.12),
+            transparent 35%
+        ),
+        var(--bg-main);
+}
+
+
+.dark-mode .orbit {
+
+    border-color: rgba(110, 190, 130, 0.20);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .hero-visual {
+
+        min-height: 430px;
+    }
+
+    .solar-system {
+
+        width: 340px;
+        height: 340px;
+    }
+
+    .orbit-one {
+        width: 150px;
+        height: 150px;
+    }
+
+    .orbit-two {
+        width: 230px;
+        height: 230px;
+    }
+
+    .orbit-three {
+        width: 310px;
+        height: 310px;
+    }
+
+    .sun-core {
+
+        width: 100px;
+        height: 100px;
+
+        font-size: 45px;
+    }
+
+    .card-one {
+        left: 0;
+    }
+
+    .card-two {
+        right: 0;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .theme-toggle {
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+    .solar-system {
+
+        width: 290px;
+        height: 290px;
+    }
+
+    .orbit-one {
+        width: 125px;
+        height: 125px;
+    }
+
+    .orbit-two {
+        width: 195px;
+        height: 195px;
+    }
+
+    .orbit-three {
+        width: 265px;
+        height: 265px;
+    }
+
+    .sun-core {
+
+        width: 82px;
+        height: 82px;
+
+        font-size: 38px;
+    }
+
+    .floating-card {
+
+        padding: 9px 12px;
+
+        border-radius: 12px;
+    }
+
+    .floating-card strong {
+        font-size: 12px;
+    }
+
+    .floating-card small {
+        font-size: 9px;
+    }
+
+    .energy-badge {
+        display: none;
+    }
+}
+
+/* =========================================
+   DARK MODE NAVBAR
+   ========================================= */
+
+.dark-mode .navbar {
+    background: #101c16;
+    border-bottom-color: rgba(180, 220, 190, 0.12);
+}
+
+.dark-mode .navbar nav a {
+    color: #d8e9dc;
+}
+
+.dark-mode .navbar nav a:hover {
+    color: #72c98b;
+}
+
+.dark-mode .logo {
+    color: #e8f5eb;
+}
+
+.navbar {
+    background: white;
+}
